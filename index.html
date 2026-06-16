@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indian EVM Simulation - West Bengal 2026</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="evm-system-container">
+        
+        <!-- CONTROL UNIT (Polling Officer Side) -->
+        <div class="evm-unit control-unit">
+            <div class="unit-header">CONTROL UNIT</div>
+            <div class="cu-display-panel">
+                <div id="cu-display" class="cu-screen">READY</div>
+                <div class="cu-status-lights">
+                    <div class="light-container">
+                        <div id="light-busy" class="led-light red"></div>
+                        <span class="light-label">BUSY</span>
+                    </div>
+                    <div class="light-container">
+                        <div id="light-ready" class="led-light green lit"></div>
+                        <span class="light-label">READY</span>
+                    </div>
+                </div>
+            </div>
+            <div class="cu-interface">
+                <button id="btn-ballot" class="cu-btn ballot-btn">BALLOT</button>
+                <button id="btn-result" class="cu-btn utility-btn">RESULT</button>
+                <button id="btn-clear" class="cu-btn utility-btn risk-btn">CLEAR</button>
+            </div>
+            <div class="cu-stats-panel">
+                <div>Total Votes Registered: <span id="stat-total-votes" class="lcd-text">0</span></div>
+            </div>
+        </div>
+
+        <!-- VVPAT UNIT -->
+        <div class="evm-unit vvpat-unit">
+            <div class="unit-header">VVPAT</div>
+            <div class="vvpat-window">
+                <div id="vvpat-slip-container" class="slip-container">
+                    <div id="vvpat-slip" class="vvpat-slip">
+                        <div id="slip-serial" class="slip-text">--</div>
+                        <div id="slip-name" class="slip-text name">----------</div>
+                        <div class="slip-symbol-box">
+                            <img id="slip-symbol" src="" alt="Symbol" style="display:none;">
+                            <span id="slip-symbol-alt">--</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-reflection"></div>
+            </div>
+            <div class="vvpat-status">
+                <div id="vvpat-lamp" class="led-light green"></div>
+                <span class="light-label">PRINTER STATUS</span>
+            </div>
+        </div>
+
+        <!-- BALLOT UNIT (Voter Side) -->
+        <div class="evm-unit ballot-unit">
+            <div class="unit-header">
+                <span>BALLOT UNIT</span>
+                <div id="bu-ready-lamp" class="led-light green"></div>
+            </div>
+            
+            <div class="ballot-list-container">
+                <!-- Header row inside ballot sheet -->
+                <div class="ballot-row table-header">
+                    <div class="col-num">Sl. No.</div>
+                    <div class="col-details">Candidate Details</div>
+                    <div class="col-symbol">Symbol</div>
+                    <div class="col-action">Vote</div>
+                </div>
+                <!-- Dynamic rows injected by JS -->
+                <div id="ballot-rows-hook"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Audio Element for EVM Beep -->
+    <audio id="evm-beep" src="https://actions.google.com/sounds/v1/alarms/digital_watch_alarm_long.ogg" preload="auto"></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>

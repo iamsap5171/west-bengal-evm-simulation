@@ -1,0 +1,351 @@
+:root {
+    --evm-bg-beige: #dccbb4;
+    --evm-dark-grey: #4a4a4a;
+    --panel-border: #222;
+    --led-red-off: #400000;
+    --led-red-on: #ff0000;
+    --led-green-off: #003300;
+    --led-green-on: #00ff00;
+    --ballot-blue: #0056b3;
+    --paper-white: #fcfcf9;
+}
+
+body {
+    background-color: #2c3e50;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.evm-system-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    align-items: flex-start;
+    max-width: 1400px;
+    width: 100%;
+}
+
+/* Common EVM Unit styling */
+.evm-unit {
+    background-color: var(--evm-bg-beige);
+    border: 4px solid var(--panel-border);
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+.unit-header {
+    background-color: var(--evm-dark-grey);
+    color: #fff;
+    padding: 8px;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* LEDs */
+.led-light {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 2px solid #111;
+    transition: background 0.2s ease;
+}
+.led-light.red { background-color: var(--led-red-off); }
+.led-light.red.lit { background-color: var(--led-red-on); box-shadow: 0 0 10px var(--led-red-on); }
+.led-light.green { background-color: var(--led-green-off); }
+.led-light.green.lit { background-color: var(--led-green-on); box-shadow: 0 0 10px var(--led-green-on); }
+
+.light-label {
+    font-size: 11px;
+    font-weight: bold;
+    color: #222;
+    margin-top: 3px;
+}
+
+/* Control Unit Layout */
+.control-unit {
+    width: 320px;
+}
+.cu-display-panel {
+    background-color: #222;
+    padding: 12px;
+    border-radius: 4px;
+    margin-bottom: 25px;
+}
+.cu-screen {
+    background-color: #9fbf9f;
+    color: #111;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 1.4rem;
+    padding: 8px;
+    text-align: center;
+    border-radius: 3px;
+    height: 35px;
+    line-height: 35px;
+    text-transform: uppercase;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.5);
+}
+.cu-status-lights {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 12px;
+}
+.light-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.cu-interface {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.cu-btn {
+    padding: 12px;
+    font-weight: bold;
+    border: 2px solid #222;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 4px #111;
+}
+.cu-btn:active {
+    box-shadow: 0 1px #111;
+    transform: translateY(3px);
+}
+.ballot-btn { background-color: #3498db; color: white; font-size: 1.1rem; }
+.utility-btn { background-color: #95a5a6; color: #222; }
+.risk-btn { background-color: #e74c3c; color: white; }
+
+.cu-stats-panel {
+    margin-top: 20px;
+    border-top: 2px dashed #888;
+    padding-top: 10px;
+    font-weight: bold;
+    color: #333;
+}
+.lcd-text {
+    font-family: monospace;
+    font-size: 1.2rem;
+    color: #000;
+}
+
+/* VVPAT Design */
+.vvpat-unit {
+    width: 260px;
+}
+.vvpat-window {
+    width: 100%;
+    height: 280px;
+    background-color: #111;
+    border: 6px solid #555;
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+}
+.glass-reflection {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 50%);
+    pointer-events: none;
+}
+.slip-container {
+    position: absolute;
+    width: 80%;
+    height: 200px;
+    left: 10%;
+    top: -210px; /* Hidden upper state */
+    background-color: var(--paper-white);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+    padding: 15px;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+/* Print Falling Animation Frame */
+.slip-container.print-drop {
+    animation: dropSlip 7s forwards;
+}
+@keyframes dropSlip {
+    0% { top: -210px; }
+    15% { top: 25px; }
+    80% { top: 25px; opacity: 1; }
+    90% { top: 240px; opacity: 0; }
+    100% { top: -210px; opacity: 0; }
+}
+.vvpat-slip {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    border: 2px dashed #aaa;
+    padding: 8px;
+    box-sizing: border-box;
+    color: #000;
+    font-family: Arial, sans-serif;
+}
+.slip-text { font-size: 14px; font-weight: bold; margin-bottom: 4px; }
+.slip-text.name { font-size: 15px; text-transform: uppercase; border-bottom: 1px solid #ccc; padding-bottom: 4px;}
+.slip-symbol-box {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #eee;
+    background: #fff;
+    margin-top: 5px;
+}
+.slip-symbol-box img {
+    max-width: 50px;
+    max-height: 50px;
+    object-fit: contain;
+}
+.vvpat-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 15px;
+    justify-content: center;
+}
+
+/* Ballot Unit Layout */
+.ballot-unit {
+    width: 620px;
+    background-color: #cbd5e1;
+}
+.ballot-list-container {
+    background-color: #fff;
+    border: 2px solid #444;
+    border-radius: 4px;
+    padding: 2px;
+}
+.ballot-row {
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid #555;
+    background-color: #fff;
+    padding: 6px 0;
+}
+.ballot-row.table-header {
+    background-color: var(--evm-dark-grey);
+    color: white;
+    font-weight: bold;
+    padding: 8px 0;
+    border-bottom: 3px solid #000;
+}
+.col-num { width: 10%; text-align: center; font-weight: bold; font-size: 14px; }
+.col-details { width: 50%; padding-left: 15px; font-weight: bold; font-size: 14px; text-transform: uppercase;}
+.col-details span { display: block; font-size: 11px; color: #555; font-weight: normal; margin-top: 2px;}
+.col-symbol { width: 22%; display: flex; justify-content: center; align-items: center; border-left: 1px dashed #ccc; border-right: 1px dashed #ccc;}
+.col-action { width: 18%; display: flex; justify-content: space-around; align-items: center; padding-right: 5px;}
+
+/* Perfectly framed container for custom logo images */
+.symbol-img-wrap {
+    width: 50px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.symbol-img-wrap img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+.symbol-placeholder {
+    font-size: 11px;
+    color: #7f8c8d;
+    font-style: italic;
+    border: 1px dashed #bdc3c7;
+    padding: 2px 4px;
+    text-transform: none;
+}
+
+/* Ballot Mechanisms */
+.bu-ready-led {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--led-red-off);
+    border: 1px solid #000;
+}
+.bu-ready-led.active {
+    background-color: var(--led-red-on);
+    box-shadow: 0 0 6px var(--led-red-on);
+}
+.vote-trigger-btn {
+    width: 45px;
+    height: 30px;
+    background-color: var(--ballot-blue);
+    border: 2px solid #002d62;
+    border-radius: 15px;
+    cursor: pointer;
+    box-shadow: 0 3px #00234a;
+    position: relative;
+}
+.vote-trigger-btn:active {
+    box-shadow: 0 0px #00234a;
+    transform: translateY(3px);
+}
+/* Locked panel state changes */
+.ballot-unit.locked .vote-trigger-btn {
+    cursor: not-allowed;
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+/* --- MOBILE RESPONSIVE OVERRIDES --- */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    .evm-system-container {
+        flex-direction: column; /* Stacks CU, VVPAT, and BU vertically */
+        align-items: center;
+        gap: 20px;
+    }
+
+    /* Scale units to fit the phone width smoothly */
+    .control-unit, .vvpat-unit, .ballot-unit {
+        width: 100% !important;
+        max-width: 400px; /* Fits comfortably on almost all modern phones */
+        box-sizing: border-box;
+    }
+
+    /* Adjust Ballot Unit font size and row padding for smaller displays */
+    .col-details {
+        font-size: 12px !important;
+        padding-left: 8px;
+    }
+    
+    .col-details span {
+        font-size: 10px !important;
+    }
+
+    .symbol-img-wrap {
+        width: 40px; /* Slightly smaller logos on mobile to save space */
+        height: 32px;
+    }
+
+    /* Increase button size slightly for touch finger targets */
+    .vote-trigger-btn {
+        width: 50px;
+        height: 35px;
+    }
+}
