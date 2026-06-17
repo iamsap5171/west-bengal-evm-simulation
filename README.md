@@ -1,7 +1,3 @@
-Here is a comprehensive, production-ready `README.md` explicitly written for your EVM simulation project. It is structured to look highly professional on GitHub, highlighting your engineering choices and front-end skills.
-
----
-
 # 🗳️ Indian EVM & VVPAT Web Simulation
 
 A fully functional, hardware-accurate web simulation of the Indian Electronic Voting Machine (EVM) ecosystem. This project reverse-engineers the physical multi-unit workflow into a responsive browser experience using native front-end web technologies.
