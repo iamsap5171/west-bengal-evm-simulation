@@ -1,4 +1,4 @@
-# 🚀 Awesome Project Name
+# 🚀 Indian EVM Simulation (Front-end only)
 
 A concise, one-sentence description of what this project does and who it is for.
 
