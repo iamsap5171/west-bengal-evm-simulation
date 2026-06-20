@@ -16,9 +16,50 @@ body {
     margin: 0;
     padding: 20px;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    justify-content: start;
+    align-items: stretch;
     min-height: 100vh;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+#header {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    width: 100%;
+    justify-content: flex-start;
+    color: #ecf0f1;
+    margin-bottom: 50px;
+    margin-top: 0;
+    margin-left: 10px;
+    padding: 10px auto 2px 4px;
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 100;
+    font-style: normal;
+}
+
+#author {
+    margin-top: -30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+#evm-text {
+    background: linear-gradient(90deg, #f1861b, #ffffff, #138808);
+    background-clip: text;
+    color: transparent;
+    font-weight: bold;
+}
+
+#sap {
+    color: #e60909;
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 700;
+    font-style: normal;
 }
 
 .evm-system-container {
